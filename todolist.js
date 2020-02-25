@@ -1,5 +1,6 @@
 var todoList = ["Do laundry", "Hello", "It's me"];
 
+
 function reloadPage() {
     // https://www.geeksforgeeks.org/hide-or-show-elements-in-html-using-display-property/
     // https://www.geeksforgeeks.org/hide-or-show-html-elements-using-visibility-property-in-javascript/
@@ -33,6 +34,8 @@ function reloadPage() {
 function activateFieldToAddItem() {
     document.getElementsByClassName('category-input-panel')[0].style.display = 'block';
     document.getElementsByClassName('category-input-placeholder')[0].style.display = 'none';
+
+    document.getElementById('item-input').focus();
 }
 
 function deactivateFieldToAddItem() {
@@ -56,4 +59,7 @@ function addItem() {
     referenceNode.parentNode.insertBefore(divNode, referenceNode.nextSibling);
 
     document.getElementById('item-input').value = "";
+
+    window.location = "/index.html?item=" + inputValue;
 }
+
