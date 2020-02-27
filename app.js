@@ -11,8 +11,6 @@ http.createServer(function(req, res) {
     console.log("Path: " + myPath);
 
     if (myPath === '/todolist.js') {
-        console.log("javascipt coming through");
-
         var h = "." + myPath;
 
         fs.readFile(h, function(err, data) {
@@ -23,8 +21,6 @@ http.createServer(function(req, res) {
     }
 
     if (myPath === '/index.css') {
-        console.log("css coming through");
-
         var h = "." + myPath;
 
         fs.readFile(h, function(err, data) {
@@ -35,8 +31,6 @@ http.createServer(function(req, res) {
     }
 
     if (myPath === '/index.html') {
-        console.log("index gooo");
-
         var h = "." + myPath;
 
         fs.readFile(h, function(err, data) {
@@ -46,7 +40,32 @@ http.createServer(function(req, res) {
         });
     }
 
+    if (myPath === "/retrieveData") {
+        fs.readFile('./todolist.json', 'utf8', (err, jsonString) => {
+            if (err) {
+                console.log("Error reading file from disk:", err)
+                return
+            }
+
+            try {
+                const customer = JSON.parse(jsonString)
+
+                var jsonS = JSON.stringify(customer);
+
+                res.writeHead(200, {'Content-Type' : 'application/json'});
+                res.write(jsonS);
+                res.end();
+            } catch(err) {
+                console.log('Error parsing JSON string:', err)
+            }
+        })
+    }
+
     if (search != null) {
         console.log("Item: " + q.query.item);
+
+        fs.appendFile("todolist.txt", q.query.item, function(err) {
+            console.log("Item saved");
+        });
     }
 }).listen(8080);
