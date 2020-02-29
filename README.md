@@ -2,6 +2,11 @@
 
 A practice project for me to learn Javascript and backend web development
 
+29 February 2020: 
+- You can now add to the list
+- Refactored the way the list updates and retrieves the items
+- Fixed: Website would freeze upon creating first item
+- Fixed: Website would not show input field placeholder after first item insert
 
 27 February 2020:
 - Todo list now reads JSON from file, parses and renders onto website
