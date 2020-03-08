@@ -47,12 +47,12 @@ http.createServer(function(req, res) {
             }
 
             try {
-                const customer = JSON.parse(jsonString)
+                const json = JSON.parse(jsonString)
 
-                var jsonS = JSON.stringify(customer);
+                var jsonString = JSON.stringify(json);
 
                 res.writeHead(200, {'Content-Type' : 'application/json'});
-                res.write(jsonS);
+                res.write(jsonString);
                 res.end();
             } catch(err) {
                 console.log('Error parsing JSON string:', err)
@@ -72,14 +72,14 @@ http.createServer(function(req, res) {
                     req.on('data', function(data) {
                         console.log("Data received: " + data.toString());
 
-                        const customer = JSON.parse(jsonString)
+                        const json = JSON.parse(jsonString)
 
                         // https://itnext.io/how-to-handle-the-post-request-body-in-node-js-without-using-a-framework-cd2038b93190
-                        customer.items.push(data.toString());
+                        json.items.push(data.toString());
 
-                        var customerString = JSON.stringify(customer);
+                        var jsonString = JSON.stringify(json);
 
-                        fs.writeFile("./todolist.json", customerString, function(err) {
+                        fs.writeFile("./todolist.json", jsonString, function(err) {
                             console.log("Done!");
                             
                             res.writeHead(200);

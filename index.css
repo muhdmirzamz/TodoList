@@ -16,8 +16,24 @@ button {
     margin-top: 5px;
 }
 
-.category-panel {
+ul {
+    background-color: antiquewhite;
+}
+
+ul li {
+    display: inline-block;
+
+    margin: 2%;
+
+    vertical-align: top; /* this aligns the list to the top */
+
+    background-color: blueviolet;
+
     width: 20%;
+}
+
+.category-panel {
+    width: 100%;
 
     background-color: blue;
 
@@ -80,3 +96,4 @@ button {
 
     border-radius: 2%;  
 }
+
