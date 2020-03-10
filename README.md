@@ -1,5 +1,12 @@
 # TodoList
 
+Test cases:
+- [] Able to read in empty json file
+- [] Able to read in filled json file
+- [] Able to write to json file
+- [] Able to write an entry and retrieve said entry from json file
+
+
 A practice project for me to learn Javascript and backend web development
 
 29 February 2020: 
