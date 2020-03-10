@@ -1,7 +1,7 @@
 # TodoList
 
 Test cases:
-- [] Able to read in empty json file
+- [x] Able to read in empty json file
 - [] Able to read in filled json file
 - [] Able to write to json file
 - [] Able to write an entry and retrieve said entry from json file
