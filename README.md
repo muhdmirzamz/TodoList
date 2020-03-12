@@ -1,5 +1,8 @@
 # TodoList
 
+### A practice project for me to learn Javascript and backend web development
+
+
 Test cases:
 - [x] Able to read in empty json file
 - [ ] Able to read in filled json file
@@ -9,7 +12,6 @@ Test cases:
 - [ ] Able to write an entry, retrieve said entry and not have duplicates to todo items
 
 
-A practice project for me to learn Javascript and backend web development
 
 12 March 2020:
 - Horizontal scrolling is implemented
