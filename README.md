@@ -3,11 +3,16 @@
 Test cases:
 - [x] Able to read in empty json file
 - [ ] Able to read in filled json file
+- [ ] Able to read in multiple categories
 - [ ] Able to write to json file
 - [ ] Able to write an entry and retrieve said entry from json file
+- [ ] Able to write an entry, retrieve said entry and not have duplicates to todo items
 
 
 A practice project for me to learn Javascript and backend web development
+
+12 March 2020:
+- Horizontal scrolling is implemented
 
 29 February 2020: 
 - You can now add to the list
