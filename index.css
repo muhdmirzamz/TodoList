@@ -1,5 +1,8 @@
 body {
     background-color: aqua;
+
+    overflow: auto;
+    white-space: nowrap;
 }
    
 
@@ -13,11 +16,7 @@ textarea {
 }
 
 button {
-    margin-top: 5px;
-}
-
-ul {
-    background-color: antiquewhite;
+    float: left;
 }
 
 ul li {
@@ -25,7 +24,8 @@ ul li {
 
     margin: 2%;
 
-    vertical-align: top; /* this aligns the list to the top */
+    /* this aligns the list to the top */
+    vertical-align: top; 
 
     background-color: blueviolet;
 

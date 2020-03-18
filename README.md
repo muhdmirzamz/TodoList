@@ -7,11 +7,17 @@ Test cases:
 - [x] Able to read in empty json file
 - [ ] Able to read in filled json file
 - [ ] Able to read in multiple categories
-- [ ] Able to write to json file
+- [x] Able to write to json file
+- [ ] Able to write a category
 - [ ] Able to write an entry and retrieve said entry from json file
 - [ ] Able to write an entry, retrieve said entry and not have duplicates to todo items
 
-
+18 March 2020:
+- Restructured JSON file
+- Implemented an extra panel for input to create a new category
+- Fixed: An extra panel for input now has an empty ```<textarea>```. Previously, it carried the title of the previous category.
+- Fixed: Buttons used for input used to be skewed to right of ```<textarea>```. Now fixed to bottom of ```<textarea>```.
+- Fixed: Creating a new category would erase the items of the previous category and append an extra text node with the category's title.
 
 12 March 2020:
 - Horizontal scrolling is implemented

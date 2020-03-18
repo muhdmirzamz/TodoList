@@ -40,14 +40,14 @@ http.createServer(function(req, res) {
     }
 
     if (myPath === "/retrieveData") {
-        fs.readFile('./todolist.json', 'utf8', (err, jsonString) => {
+        fs.readFile('./todolist.json', 'utf8', (err, localJSON) => {
             if (err) {
                 console.log("Error reading file from disk:", err)
                 return
             }
 
             try {
-                const json = JSON.parse(jsonString)
+                const json = JSON.parse(localJSON)
 
                 var jsonString = JSON.stringify(json);
 
@@ -61,7 +61,7 @@ http.createServer(function(req, res) {
     }
 
     if (myPath === "/sendData") {
-        fs.readFile('./todolist.json', 'utf8', (err, jsonString) => {
+        fs.readFile('./todolist.json', 'utf8', (err, localString) => {
             if (err) {
                 console.log("Error reading file from disk:", err)
                 return
@@ -69,23 +69,80 @@ http.createServer(function(req, res) {
 
             try {
                 if (req.method == 'POST') {
-                    req.on('data', function(data) {
-                        console.log("Data received: " + data.toString());
 
-                        const json = JSON.parse(jsonString)
+                    console.log(req.headers['content-type']);
 
-                        // https://itnext.io/how-to-handle-the-post-request-body-in-node-js-without-using-a-framework-cd2038b93190
-                        json.items.push(data.toString());
+                    if (req.headers['content-type'] == "application/json") {
+                        console.log("Content type is application/json");
 
-                        var jsonString = JSON.stringify(json);
+                        req.on('data', function(data) {
 
-                        fs.writeFile("./todolist.json", jsonString, function(err) {
-                            console.log("Done!");
-                            
-                            res.writeHead(200);
-                            res.end();
+                            var dataReceived = data.toString();
+    
+                            console.log("Data received: " + data.toString());
+    
+                            // turn data received into JSON object
+                            const receivedJSON = JSON.parse(dataReceived);
+
+                            // turn result from readFile to JSON object
+                            const localJSON = JSON.parse(localString);
+
+
+
+                            if (localJSON.categories == null) {
+                                var categories = [];
+                                // categories.push(receivedJSON);
+                                // localJSON.append(categories);
+
+                                localJSON.categories = [receivedJSON];
+
+                                // turn JSON object back to string
+                                // https://itnext.io/how-to-handle-the-post-request-body-in-node-js-without-using-a-framework-cd2038b93190
+                                var jsonString = JSON.stringify(localJSON);
+            
+                                // write to file
+                                fs.writeFile("todolist.json", jsonString, function(err) {
+                                    console.log("Done!");
+                                    
+                                    res.writeHead(200);
+                                    res.end();
+                                });
+                            } else {
+                                localJSON.categories.push(receivedJSON);
+
+                                // turn JSON object back to string
+                                // https://itnext.io/how-to-handle-the-post-request-body-in-node-js-without-using-a-framework-cd2038b93190
+                                var jsonString = JSON.stringify(localJSON);
+            
+                                // write to file
+                                fs.writeFile("todolist.json", jsonString, function(err) {
+                                    console.log("Done!");
+                                    
+                                    res.writeHead(200);
+                                    res.end();
+                                });
+                            }   
+
+
+
+
+
+
+                            // if (receivedJSON.input != null) { // new item
+                            //     localJSON[receivedJSON.input.pos].list.items.push(receivedJSON.input.item);
+
+                            //     // https://itnext.io/how-to-handle-the-post-request-body-in-node-js-without-using-a-framework-cd2038b93190
+                            //     var jsonString = JSON.stringify(json);
+        
+                            //     fs.writeFile("todolist.json", jsonString, function(err) {
+                            //         console.log("Done!");
+                                    
+                            //         res.writeHead(200);
+                            //         res.end();
+                            //     });
+                            // }
                         });
-                    });
+                    }
                 }
             } catch(err) {
                 console.log('Error parsing JSON string:', err)

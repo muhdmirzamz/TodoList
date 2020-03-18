@@ -6,26 +6,15 @@
     </head>
     <body onload="reloadPage()">
         <ul>
-            <li>
+            <li class="category-panel-list">
                 <div class="category-panel">
-                    <div class="category-title">
-                        <p id="category-title-text">Test</p>
-                    </div>
-                    <div class="category-input-placeholder" onclick="activateFieldToAddItem()">
-                        <p>+ Add new item</p>
+                    <div class="category-input-placeholder" onclick="activateFieldToAddItem(this)">
+                        <p id="category-title-text">+ Add new item</p>
                     </div>
                     <div class="category-input-panel">
                         <textarea id="item-input"></textarea>
-                        <button onclick="addItem()">Submit</button>
-                        <button onclick="deactivateFieldToAddItem()">Cancel</button>
-                    </div>
-                </div>
-            </li>
-
-            <li>
-                <div class="category-panel">
-                    <div class="category-input-placeholder" onclick="activateFieldToAddItem()">
-                        <p>+ Add new item</p>
+                        <button onclick="addItem(this)">Submit</button>
+                        <button onclick="deactivateFieldToAddItem(this)">Cancel</button>
                     </div>
                 </div>
             </li>
